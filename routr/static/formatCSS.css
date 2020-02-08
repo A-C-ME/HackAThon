@@ -9,6 +9,9 @@
   margin-right: auto;
   width: 50%;
 }
+       body{
+            background-color: #f4fcff;
+        }
         .footer{
             position: fixed;
             left: 0;
