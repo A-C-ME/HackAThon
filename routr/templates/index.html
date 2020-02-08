@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+{% block main %}
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">group</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for row in rows %}
+      <tr>
+          <td>{{ row[0] }}</td>
+          <td>{{ row[1] }}</td>
+          <td>{{ row[2] }}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+{% endblock %}
