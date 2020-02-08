@@ -1,0 +1,47 @@
+
+        *{
+            font-family: Arial, 'Helvetica', sans-serif; 
+            
+        }
+        .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+        .footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
+    .button{
+        background-color: #00b1ff;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        border-radius: 25px;
+        font-size: 16px;
+        
+        cursor: pointer;
+    }
+    .input100 {
+        position: relative;
+        display: block;
+        
+        background: #fff;
+        border-radius: 31px;
+        font-family: Ubuntu-Bold;
+        font-size: 18px;
+        color: #8f8fa1;
+        line-height: 1.2;
+        }
+        .wrap-input100 {
+           
+            background-color: #fff;
+            border-radius: 31px;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 1;
+            }
