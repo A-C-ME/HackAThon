@@ -4,9 +4,11 @@
     Main
 {% endblock %}
 {% block main %}
+
 <img src="static/name2.png" alt="logo" class="center">
-<h3 class="center" style=" right:50vw; left:50vw;">
-    Select the store you will be shopping at:
+
+<h3 class="center" >
+    Select the Store you will be shopping at:
 </h3>
 <select id="store_select" name="store selection:" class="center">
 <option value="cvs">
@@ -20,35 +22,25 @@
 <p class="center" style="font-size: 12pt;">
     Place your shopping cart items in the textbox below followed by an enter:
 </p>
-<br>
-<form action="/add" method="post">
-   <div class="form-group">
-     <input type="text" class="center" name = "item" id="input" placeholder="Item">
-   </div>
-  <button type="submit"  id="submitbutton"class="center button" >
-      Add
-  </button>
-</form>
-<br>
-<form action="/route" method="post">
-  <button type="submit" id ="button" class="center button">
-    Rout me!
-  </button>
-</form>
-<br>
-  <ul class="list-group list-group-flush">
-  {% for row in rows %}
-    <li class="list-group-item">{{row[1]}}</li>
-  {% endfor %}
-  </ul>
+   
+    <textarea  rows="10" id="list" class="input100 center"  name="message" placeholder="Enter Item Here"></textarea>
+    <span class="focus-input100"></span>
+    <br>
+
+<button type="submit" onclick="submit();" id="submitbutton"class="center button" >
+    rout me!
+</button>
+<button type="submit"  id="emptybutton"class="footer button" style="background-color: rgb(179, 175, 175);" >
+    empty cart
+</button>
 <script>
  function submit(){
-
+   
     if(document.getElementById("list").value < 1){
         window.alert("Shopping cart is blank! Please enter at least 1 item!");
         return false;
 
     }
- }
+ }   
 </script>
 {% endblock %}
