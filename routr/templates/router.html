@@ -17,38 +17,27 @@
          Map
     </div>
     <br>
-<<<<<<< HEAD
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/1024px-Solid_grey.svg.png"
-    alt="logo" style="width:250pt;height: 400pt; margin-left:3.5%">
-=======
-    <img src="static/map.png" 
+    <img src="static/map.png"
     alt="logo" style="width:70%;height: 70%; margin-left:3.5%">
->>>>>>> 9ab96c5f09b363aae1491a889e111d5af31fa9e1
 </div>
-    <div id="station_name" style="float:right; ">
-        Station Number
-        {% if route[0][3] != null %}
-            {{route[0][3]}}
-        {% endif %}
+<div id="station_name" style="float:right; ">
+    Station : {{route[count][2]}}
 
-    </div>
-    <div id="item_checkbox">
-
-        {% for item in items[route[0][3]] %}
-          <input type="checkbox" value="item">
-          <label class="check"> </label><br>
-        {% endfor %}
-
-
-        <label class="container"> {{item}}<input type="checkbox">
+</div>
+<div id="item_checkbox">
+    {% for item in items[route[count][2]] %}
+      <label class = "container"> {{item}}
+        <input type="checkbox">
         <span class="checkmark"></span>
-        </label>
+      </label>
+    {% endfor %}
+</div>
+<br>
 
-    </div>
-     <span class="focus-input100"></span>
-     <br>
+<form action="/route" method="post">
+  <button type="submit" id ="button" id="nextbutton"  class="center button style="margin-left:3.5%;max-width: 25%;">
+    Next Rout
+  </button>
+</form>
 
- <button type="submit" onclick="next();" id="nextbutton" class="center button" style="margin-left:3.5%;max-width: 25%;" >
-     Next Rout
- </button>
 {% endblock %}

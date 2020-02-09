@@ -22,25 +22,42 @@
 <p class="center" style="font-size: 12pt;">
     Place your shopping cart items in the textbox below followed by an enter:
 </p>
-   
-    <textarea  rows="10" id="list" class="input100 center"  name="message" placeholder="Enter Item Here"></textarea>
-    <span class="focus-input100"></span>
-    <br>
+<br>
+<form action="/add" method="post">
+   <div class="form-group">
+     <input type="text" class="center" name = "item" id="input" placeholder="Item">
+   </div>
+  <button type="submit"  id="submitbutton"class="center button" >
+      Add
+  </button>
+</form>
+<br>
+<form action="/route" method="post">
+  <button type="submit" id ="button" class="center button">
+    Rout me!
+  </button>
+</form>
+<br>
+  <ul class="list-group list-group-flush">
+  {% for row in rows %}
+    <li class="list-group-item">{{row[1]}}</li>
+  {% endfor %}
+</ul>
 
-<button type="submit" onclick="submit();" id="submitbutton"class="center button" >
-    rout me!
-</button>
-<button type="submit"  id="emptybutton"class="footer button" style="background-color: rgb(179, 175, 175);" >
-    empty cart
-</button>
+    <br>
+<form action="/empty" method="post">
+  <button type="submit"  id="emptybutton"class="footer button" style="background-color: rgb(179, 175, 175);" >
+      empty cart
+  </button>
+</form>
 <script>
  function submit(){
-   
+
     if(document.getElementById("list").value < 1){
         window.alert("Shopping cart is blank! Please enter at least 1 item!");
         return false;
 
     }
- }   
+ }
 </script>
 {% endblock %}

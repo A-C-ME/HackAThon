@@ -14,7 +14,8 @@ app = Flask(__name__)
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 route = []
 items = {}
-count = 0
+count = -1
+length = 0
 # Ensure responses aren't cached
 @app.after_request
 def after_request(response):
@@ -44,6 +45,14 @@ def add():
     else:
         redirect("/")
 
+@app.route("/empty", methods=["GET", "POST"])
+def empty():
+    with sqlite3.connect("routr.db") as conn:
+        c = conn.cursor()
+        c.execute('DELETE FROM cart;')
+        return redirect("/")
+
+
 @app.route("/route", methods=["GET", "POST"])
 def route():
     with sqlite3.connect("routr.db") as conn:
@@ -60,9 +69,11 @@ def route():
             print(stations)
             start = c.execute('SELECT x,y FROM "groups" WHERE "group" = "start"').fetchone()
             checkout = c.execute('SELECT x,y FROM "groups" WHERE "group" = "checkout"').fetchone()
-            print(start)
-            print(checkout)
             route = algo(stations,[start[0],start[1],"start"],[checkout[0],checkout[1],"checkout"])
+            route = [list(x) for x in route]
+            print(route)
+            global length
+            length = len(route)
             items = {}
             rows = c.execute('SELECT c.name, "group" FROM cart c INNER JOIN items i on c.name = i.name').fetchall()
             for row in rows:
@@ -70,10 +81,14 @@ def route():
                     items[row[1]] = [row[0]]
                 else:
                     items[row[1]] = items[row[1]]
-                    #items[row[1]].append(row[0])
             print(items)
-            #count += 1
-            return render_template("router.html",route=route,items=items)
+            global count
+            if count < length:
+                count = count + 1
+            else:
+                count = 0
+            print(count)
+            return render_template("router.html",route=route,items=items,count=count)
 
 
 def errorhandler(e):

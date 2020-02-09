@@ -58,14 +58,12 @@ def calc(points):
 
 def algo(cart, start, checkout):
     #points = [toys, sports, dairy, cannedFood, frozen, fruitsAndVeggies, intimateApp, hardware, houseware]
-    print("FUUUCK")
     perms = list(itertools.permutations(cart))
     for i in perms:
         i = list(i)
         i.insert(0, start)
         i.append(checkout)
         i = tuple(i)
-        print(i)
         #print(i)
        # shortestPath(start, i)
         totDistancesForPerms.append(calc(i))
