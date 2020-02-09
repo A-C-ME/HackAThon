@@ -1,47 +1,144 @@
 
         *{
-            font-family: Arial, 'Helvetica', sans-serif; 
+            font-family: Helvetica; 
+            font-size: 16pt;
             
         }
-        .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-        .footer{
+        body{
+            background-color: #f4fcff;
+        }
+        h3{
+            
+             right:50vw;
+              left:50vw;
+              text-align: center;
+        }
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        }
+    .footer{
             position: fixed;
             left: 0;
             bottom: 0;
         }
     .button{
+        font-family: Helvetica;
         background-color: #00b1ff;
         border: none;
         color: white;
         padding: 15px 32px;
         text-align: center;
         text-decoration: none;
-        border-radius: 25px;
+        border-radius: 20px;
         font-size: 16px;
-        
         cursor: pointer;
-    }
+        }
     .input100 {
+        font-family: Helvetica;
         position: relative;
         display: block;
-        
         background: #fff;
-        border-radius: 31px;
+        border-radius: 15px;
         font-family: Ubuntu-Bold;
-        font-size: 18px;
+        font-size: 16px;
         color: #8f8fa1;
-        line-height: 1.2;
-        }
-        .wrap-input100 {
-           
-            background-color: #fff;
-            border-radius: 31px;
-            margin-bottom: 16px;
-            position: relative;
-            z-index: 1;
-            }
+        width:50%;  
+        
+    }
+    #store_select{
+        font-family: Helvetica;
+        border-radius: 15px;
+        border-color: white;
+    }
+    #list{
+        font-family: Helvetica;
+        border-color: white;
+    }
+    #station_line{
+        margin-left: 10vw;
+        margin-right:10vw;
+        color: #00b1ff;
+    }
+    #station_name{
+        position:absolute;
+        top:12%;
+        right:15%;
+        
+    }
+    #item_checkbox{
+        position:absolute;
+        font-size: 15pt;
+        top:20%;
+        right:15%;
+       
+        border-radius: 15px;
+    }
+    .check{
+        font-size: 15pt;
+
+    }
+    .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+      .checkmark {
+        position: absolute;
+        top: 0;
+        right: 70%;
+        height: 25px;
+        width: 50px;
+        
+        background-color: #ccc;
+      }
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+      
+      /* When the checkbox is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #2196F3;
+      }
+      
+      /* Create the checkmark/indicator (hidden when not checked) */
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+      
+      /* Show the checkmark when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+      
+      /* Style the checkmark/indicator */
+      .container .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }
+      

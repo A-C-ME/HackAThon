@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+{% block main %}
+<h3 class="center" style=" right:50vw; left:50vw;text-align: center;">
+    Let's Find Your Rout
+ </h3>
+ <div>
+   
+    <hr id="station_line">
+ </div>
+<div id="store_map">
+    <div style="padding-left: 15%; margin-bottom: 0;">
+         Map
+    </div>
+    <br>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Solid_grey.svg/1024px-Solid_grey.svg.png" 
+    alt="logo" style="width:250pt;height: 400pt; margin-left:3.5%">
+</div>
+    <div id="station_name" style="float:right; ">
+        Station Number
+         Jinja Name Element goes here
+        {% if station[name] != null %}
+            {{station[name]}}
+        {% endif %}
+        
+    </div>
+    <div id="item_checkbox">
+         Jinja Goes here
+        {% for item in items %}
+        <input type="checkbox" value="item">
+        <label class="check"> {{station[item]}} </label><br>
+        {% endfor %}
+        
+       
+        <label class="container"> Chicken 
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        </label>
+        
+    </div>
+     <span class="focus-input100"></span>
+     <br>
+ 
+ <button type="submit" onclick="next();" id="nextbutton" class="center button" style="margin-left:3.5%;max-width: 25%;" >
+     Next Rout
+ </button>
+{% endblock %}

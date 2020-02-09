@@ -5,28 +5,37 @@
 {% endblock %}
 {% block main %}
 
-<img src="static/name2.png" alt="logo" class="center" style="background-position: 50% 50%;">
-
-<h6 class="center" style=" right:50vw; left:50vw;">
-    Select the Store you will be shopping at:
-</h6>
-<select id="store select" name="store selection:" class="center">
-  <option value="cvs">
-      CVS
-  </option>
-  <option value="walmart">
-      Walmart
-  </option>
+<h3 class="center" style=" right:50vw; left:50vw;">
+    Select the store you will be shopping at:
+</h3>
+<select id="store_select" name="store selection:" class="center">
+<option value="cvs">
+    CVS
+</option>
+<option value="walmart">
+    Walmart
+</option>
 </select>
-  <br>
-  <p class="center" style="font-size: 9pt;">
+<br>
+<p class="center" style="font-size: 12pt;">
     Place your shopping cart items in the textbox below followed by an enter:
-  </p>
-  <form action="/route" method="post">
-  <div class="form-group">
-      <label for="symbol">Enter Stock Symbol:   </label>
-      <input autocomplete="off" id = "symbol" autofocus class="form-control" name="item" placeholder="Symbol" type="text">
-  </div>
-  <input type="submit" class="center" >
-</form>
+</p>
+
+    <textarea  rows="10" id="list" class="input100 center"  name="message" placeholder="Enter Item Here"></textarea>
+    <span class="focus-input100"></span>
+    <br>
+
+<button type="submit" onclick="submit();" id="submitbutton"class="center button" >
+    rout me!
+</button>
+<script>
+ function submit(){
+
+    if(document.getElementById("list").value < 1){
+        window.alert("Shopping cart is blank! Please enter at least 1 item!");
+        return false;
+
+    }
+ }
+</script>
 {% endblock %}
