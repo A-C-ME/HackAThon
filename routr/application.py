@@ -5,6 +5,7 @@ from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.exceptions import default_exceptions, HTTPException, InternalServerError
 import sqlite3
+from algorithm import algo
 
 # Configure application
 app = Flask(__name__)
@@ -27,7 +28,6 @@ def index():
     with sqlite3.connect("routr.db") as conn:
         c = conn.cursor()
         rows = c.execute('SELECT * FROM cart').fetchall()
-        print(rows)
         return render_template("index.html",rows=rows)
 
 @app.route("/add", methods=["GET", "POST"])
@@ -46,34 +46,34 @@ def add():
 
 @app.route("/route", methods=["GET", "POST"])
 def route():
-    if request.method == "POST":
-        with sqlite3.connect("routr.db") as conn:
+    with sqlite3.connect("routr.db") as conn:
+        c = conn.cursor()
+        rows = c.execute('SELECT * FROM cart').fetchall()
+        if len(rows) < 1:
+            return apology("Error, no items added")
+        else:
             c = conn.cursor()
-            rows = c.execute('SELECT * FROM cart').fetchall()
-            if len(rows) < 1:
-                return apology("Error, no items added")
-            else:
-                c = conn.cursor()
-                stations = []
-                rows = c.execute('SELECT DISTINCT "group" FROM cart c INNER JOIN items i on c.name=i.name').fetchall()
-                for row in rows:
-                    stations.append(row[0])
-                print(stations)
-                #route = algo(stations)
-                route = ["bakery","dairy"]
-                items = {}
-                rows = c.execute('SELECT c.name, "group" FROM cart c INNER JOIN items i on c.name = i.name').fetchall()
-                print(rows)
-                for row in rows:
-                    if row[1] not in items:
-                        items[row[1]] = [row[0]]
-                    else:
-                        items[row[1]] = items[row[1]].append(row[0])
-                print(items)
-                #count += 1
-                return render_template("route.html",route=route,items=items)
-    else:
-        redirect("/")
+            stations = []
+            rows = c.execute('SELECT DISTINCT "group" FROM cart c INNER JOIN items i on c.name=i.name').fetchall()
+            for row in rows:
+                stations.append(c.execute('SELECT "x","y","group" FROM groups WHERE "group" = ?',[row[0]]).fetchone())
+            print(stations)
+            start = c.execute('SELECT x,y FROM "groups" WHERE "group" = "start"').fetchone()
+            checkout = c.execute('SELECT x,y FROM "groups" WHERE "group" = "checkout"').fetchone()
+            print(start)
+            print(checkout)
+            route = algo(stations,[start[0],start[1],"start"],[checkout[0],checkout[1],"checkout"])
+            items = {}
+            rows = c.execute('SELECT c.name, "group" FROM cart c INNER JOIN items i on c.name = i.name').fetchall()
+            for row in rows:
+                if row[1] not in items:
+                    items[row[1]] = [row[0]]
+                else:
+                    items[row[1]] = items[row[1]]
+                    #items[row[1]].append(row[0])
+            print(items)
+            #count += 1
+            return render_template("router.html",route=route,items=items)
 
 
 def errorhandler(e):
